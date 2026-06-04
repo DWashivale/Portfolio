@@ -19,19 +19,19 @@ const skillData: SkillCategory[] = [
     category: "Core Languages",
     icon: "⚡",
     skills: [
-      { name: "JavaScript (ES6+)", level: 90, color: "from-yellow-500 to-yellow-400" },
-      { name: "TypeScript", level: 85, color: "from-blue-500 to-blue-400" },
-      { name: "HTML5 / CSS3", level: 92, color: "from-orange-500 to-red-400" },
+      { name: "JavaScript (ES6+)", level: 70, color: "from-yellow-500 to-yellow-400" },
+      { name: "TypeScript", level: 75, color: "from-blue-500 to-blue-400" },
+      { name: "HTML5 / CSS3", level: 90, color: "from-orange-500 to-red-400" },
     ],
   },
   {
     category: "Frameworks & Libraries",
     icon: "🚀",
     skills: [
-      { name: "React.js", level: 88, color: "from-cyan-500 to-cyan-400" },
-      { name: "Next.js", level: 82, color: "from-gray-400 to-white" },
-      { name: "Redux / React Redux", level: 80, color: "from-purple-500 to-violet-400" },
-      { name: "Tailwind CSS", level: 88, color: "from-teal-500 to-teal-400" },
+      { name: "React.js", level: 75, color: "from-cyan-500 to-cyan-400" },
+      { name: "Next.js", level: 65, color: "from-gray-400 to-white" },
+      { name: "Redux / React Redux", level: 65, color: "from-purple-500 to-violet-400" },
+      { name: "Tailwind CSS", level: 80, color: "from-teal-500 to-teal-400" },
     ],
   },
   {
