@@ -1,16 +1,46 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Briefcase, Code2, FolderKanban, GraduationCap, Mail, Menu, User, X } from "lucide-react";
 import Image from "next/image";
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Education", href: "#education" },
-  { label: "Contact", href: "#contact" },
+  {
+    label: "About",
+    href: "#about",
+    icon: User,
+    color: "text-cyan-400",
+  },
+  {
+    label: "Skills",
+    href: "#skills",
+    icon: Code2,
+    color: "text-yellow-400",
+  },
+  {
+    label: "Experience",
+    href: "#experience",
+    icon: Briefcase,
+    color: "text-green-400",
+  },
+  {
+    label: "Projects",
+    href: "#projects",
+    icon: FolderKanban,
+    color: "text-purple-400",
+  },
+  {
+    label: "Education",
+    href: "#education",
+    icon: GraduationCap,
+    color: "text-blue-400",
+  },
+  {
+    label: "Contact",
+    href: "#contact",
+    icon: Mail,
+    color: "text-rose-400",
+  },
 ];
 
 export default function Navbar() {
@@ -46,32 +76,41 @@ export default function Navbar() {
         <a href="#hero" className="flex items-center ml-4 group" aria-label="Home">
           <div className="relative w-14 h-14 flex-shrink-0">
             <Image
-              src="/DattaLogo.png"
+              src="/LogoDatta.png"
               alt="DW Logo"
               fill
-              className="object-contain drop-shadow-[0_0_8px_rgba(251,146,60,0.5)] group-hover:drop-shadow-[0_0_14px_rgba(251,146,60,0.8)] transition-all duration-300"
               priority
+              className="
+        object-contain
+        transition-all
+        duration-500
+        group-hover:scale-110
+        group-hover:rotate-3
+      "
             />
           </div>
         </a>
 
         {/* Desktop Links */}
         <ul className="hidden md:flex items-center gap-7">
-          {navLinks.map((link) => (
-            <li key={link.href}>
+          {navLinks.map((link) => {
+            const Icon = link.icon;
+
+            return (
               <a
+                key={link.href}
                 href={link.href}
-                className={`nav-link font-body text-sm tracking-wide transition-colors ${activeSection === link.href.replace("#", "")
-                  ? "!text-violet-400"
-                  : ""
-                  }`}
+                className="group flex items-center gap-2 text-gray-300 hover:text-white transition-all"
               >
+                <Icon
+                  size={15}
+                  className={`${link.color} transition-all duration-300 group-hover:scale-110`}
+                />
                 {link.label}
               </a>
-            </li>
-          ))}
+            );
+          })}
         </ul>
-
         {/* CTA */}
         <a
           href="#contact"
@@ -99,16 +138,23 @@ export default function Navbar() {
           }`}
       >
         <div className="bg-dark-800/95 backdrop-blur-xl border-t border-violet-600/10 px-6 py-4 flex flex-col gap-3">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="text-gray-300 hover:text-violet-400 font-body text-sm py-2 border-b border-white/5 transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const Icon = link.icon;
+
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                className="group flex items-center gap-2 text-gray-300 hover:text-white transition-all"
+              >
+                <Icon
+                  size={15}
+                  className={`${link.color} transition-all duration-300 group-hover:scale-110`}
+                />
+                {link.label}
+              </a>
+            );
+          })}
           <a
             href="#contact"
             onClick={() => setMenuOpen(false)}
