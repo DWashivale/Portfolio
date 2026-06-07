@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Mail, Github, Linkedin, MapPin, ArrowUpRight, Send } from "lucide-react";
+import { Mail, Github, Linkedin, MapPin, ArrowUpRight, Send, Twitter, Phone, Instagram } from "lucide-react";
+import { useTheme } from "./ThemeProvider";
+import SocialLinks from "./SocialLinks";
 
 const contactLinks = [
   {
@@ -34,10 +36,43 @@ const contactLinks = [
     hoverBorder: "hover:border-violet-400/50",
     iconColor: "text-violet-400",
   },
+  {
+    icon: Twitter,
+    label: "Twitter",
+    value: "@DattaW55985",
+    href: "https://x.com/DattaW55985",
+    color: "from-sky-600/20 to-blue-600/10",
+    border: "border-sky-500/20",
+    hoverBorder: "hover:border-sky-400/50",
+    iconColor: "text-sky-400",
+  },
+
+  {
+    icon: Phone,
+    label: "Mobile",
+    value: "7588340895",
+    href: "tel:+917588340895",
+    color: "from-emerald-600/20 to-green-600/10",
+    border: "border-emerald-500/20",
+    hoverBorder: "hover:border-emerald-400/50",
+    iconColor: "text-emerald-400",
+  },
+  {
+    icon: Instagram,
+    label: "Instagram",
+    value: "@dattatray_washivale",
+    href: "https://www.instagram.com/dattatray_washivale/",
+    color: "from-pink-600/20 to-rose-600/10",
+    border: "border-pink-500/20",
+    hoverBorder: "hover:border-pink-400/50",
+    iconColor: "text-pink-400",
+  },
+
 ];
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -94,11 +129,11 @@ export default function Contact() {
         <div className="reveal inline-flex items-center gap-2 px-5 py-2.5 rounded-full mb-6 md:mb-10
           glass border border-violet-500/20 text-gray-400 font-body text-sm">
           <MapPin size={15} className="text-violet-400" />
-          <span>Based in Airoli, Navi Mumbai · Open to Remote</span>
+          <span>Based in  Navi Mumbai · Open to Remote</span>
         </div>
 
         {/* CTA button */}
-        <div className="reveal mb-8 md:mb-14">
+        {/* <div className="reveal mb-8 md:mb-14">
           <a
             href="mailto:dattatraywashivale23498@gmail.com"
             className="group inline-flex items-center gap-3 px-8 py-4 rounded-full
@@ -112,7 +147,7 @@ export default function Contact() {
             Say Hello
             <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
-        </div>
+        </div> */}
 
         {/* Contact cards */}
         <div className="reveal grid md:grid-cols-3 gap-5 mb-16">
@@ -135,7 +170,8 @@ export default function Contact() {
               <p className="text-gray-400 font-mono text-xs tracking-widest uppercase mb-2">
                 {label}
               </p>
-              <p className="text-gray-200 font-body text-sm break-all leading-relaxed">
+              <p className={`font-body text-sm break-all leading-relaxed
+  ${theme === "dark" ? "text-gray-200" : "text-violet-950"}`}>
                 {value}
               </p>
               <div className="flex items-center justify-center gap-1 mt-3 text-xs font-mono text-gray-600 group-hover:text-violet-400 transition-colors">

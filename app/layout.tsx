@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "@/app/globals.css";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Datta Washivale",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: "/DattaLogo.png", // or "/logo.png"
+    icon: "/LogoDatta.png", // or "/logo.png"
   },
 };
 
@@ -23,7 +24,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

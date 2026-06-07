@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Briefcase, Code2, FolderKanban, GraduationCap, Mail, Menu, User, X } from "lucide-react";
+import { Briefcase, Code2, FolderKanban, GraduationCap, Mail, Menu, Moon, Sun, User, X } from "lucide-react";
 import Image from "next/image";
+import { useTheme } from "./ThemeProvider";
+import { LuMoon, LuSun } from "react-icons/lu";
 
 const navLinks = [
   {
@@ -47,6 +49,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const { theme, toggleTheme } = useTheme();   // ← ADD THIS
 
   useEffect(() => {
     const handleScroll = () => {
@@ -67,7 +70,8 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-        ? "py-2 bg-dark-900/85 backdrop-blur-xl border-b border-violet-600/10"
+        ? `py-2 backdrop-blur-xl border-b border-violet-600/10 ${theme === "dark" ? "bg-dark-900/85" : "bg-[#EEEEFF]"
+        }`
         : "py-4 bg-transparent"
         }`}
     >
@@ -80,13 +84,14 @@ export default function Navbar() {
               alt="DW Logo"
               fill
               priority
-              className="
-        object-contain
-        transition-all
-        duration-500
-        group-hover:scale-110
-        group-hover:rotate-3
-      "
+              className={`
+  object-contain
+  transition-all
+  duration-500
+  group-hover:scale-110
+  group-hover:rotate-3
+  ${theme === "light" ? "brightness-0" : ""}
+`}
             />
           </div>
         </a>
@@ -100,7 +105,8 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="group flex items-center gap-2 text-gray-300 hover:text-white transition-all"
+                className={`group flex items-center gap-2 transition-all ${theme === "dark" ? "text-gray-300 hover:text-white" : "text-gray-700 hover:text-violet-700"
+                  }`}
               >
                 <Icon
                   size={15}
@@ -112,24 +118,58 @@ export default function Navbar() {
           })}
         </ul>
         {/* CTA */}
-        <a
+        <div className="hidden md:flex items-center gap-3">
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="w-9 h-9 rounded-full glass flex items-center justify-center
+      border border-violet-500/20 hover:border-violet-500/50
+      hover:-translate-y-1 transition-all duration-300"
+          >
+            {theme === "dark" ? (
+              <Sun size={20} className="text-white-400" />
+            ) : (
+              <Moon size={20} className="text-violet-400" />
+            )}
+          </button>
+        </div>
+        {/* <a
           href="#contact"
-          className="hidden md:inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium font-body
-            bg-violet-600/20 border border-violet-500/30 text-violet-300
-            hover:bg-violet-600/40 hover:border-violet-400/60 hover:text-white
-            transition-all duration-300"
+          className={`hidden md:inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium font-body
+  bg-violet-600/20 border border-violet-500/30
+  hover:bg-violet-600/40 hover:border-violet-400/60 hover:text-white
+  transition-all duration-300
+  ${theme === "dark" ? "text-violet-300" : "text-violet-900 font-semibold"}`}
         >
           Hire Me
-        </a>
+        </a> */}
 
         {/* Mobile Toggle */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-gray-400 hover:text-violet-400 transition-colors"
-          aria-label="Toggle menu"
-        >
-          {menuOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        <div className="flex md:hidden items-center gap-2">
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="w-9 h-9 rounded-full glass flex items-center justify-center
+      border border-violet-500/20 hover:border-violet-500/50
+      transition-all duration-300"
+          >
+            {theme === "dark" ? (
+              <Sun size={20} className="text-white-400" />
+            ) : (
+              <Moon size={20} className="text-violet-400" />
+            )}
+          </button>
+          <button
+            type="button"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+            className="text-gray-400 hover:text-violet-400 transition-colors"
+          >
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -137,7 +177,8 @@ export default function Navbar() {
         className={`md:hidden transition-all duration-300 overflow-hidden ${menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
           }`}
       >
-        <div className="bg-dark-800/95 backdrop-blur-xl border-t border-violet-600/10 px-6 py-4 flex flex-col gap-3">
+        <div className={`backdrop-blur-xl border-t border-violet-600/10 px-6 py-4 flex flex-col gap-3 ${theme === "dark" ? "bg-dark-800/95" : "bg-[#EEEEFF"
+          }`}>
           {navLinks.map((link) => {
             const Icon = link.icon;
 
@@ -145,7 +186,9 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="group flex items-center gap-2 text-gray-300 hover:text-white transition-all"
+                onClick={() => setMenuOpen(false)}
+                className={`group flex items-center gap-2 transition-all ${theme === "dark" ? "text-gray-300 hover:text-white" : "text-gray-700 hover:text-violet-700"
+                  }`}
               >
                 <Icon
                   size={15}
@@ -155,14 +198,14 @@ export default function Navbar() {
               </a>
             );
           })}
-          <a
+          {/* <a
             href="#contact"
             onClick={() => setMenuOpen(false)}
             className="mt-1 text-center px-5 py-2.5 rounded-full text-sm font-medium
               bg-violet-600 text-white hover:bg-violet-500 transition-colors"
           >
             Hire Me
-          </a>
+          </a> */}
         </div>
       </div>
     </nav>

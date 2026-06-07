@@ -3,9 +3,15 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { Github, Linkedin, Mail, ArrowDown, Code2, Zap } from "lucide-react";
+import { useTheme } from "./ThemeProvider";
+import { BsInstagram, BsTwitter, BsTwitterX } from "react-icons/bs";
+import { MdEmail } from "react-icons/md";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import SocialLinks from "./SocialLinks";
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -106,9 +112,10 @@ export default function Hero() {
           <div className="flex-1 text-center md:text-left order-2 md:order-1">
             {/* Badge */}
             <div
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5
+              className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5
                 bg-violet-500/10 border border-violet-500/25 text-violet-300 text-xs font-body
-                opacity-0 animate-fade-up"
+                opacity-0 animate-fade-up
+                ${theme === "dark" ? "text-violet-300" : "text-violet-800"}`}
               style={{ animationDelay: "0.2s" }}
             >
               <Zap size={12} className="text-violet-400" />
@@ -181,28 +188,8 @@ export default function Hero() {
             </div>
 
             {/* Social icons */}
-            <div
-              className="flex items-center justify-center md:justify-start gap-4 opacity-0 animate-fade-up"
-              style={{ animationDelay: "1s" }}
-            >
-              {[
-                { href: "https://github.com/DWashivale", label: "GitHub", icon: <Github size={17} /> },
-                { href: "https://linkedin.com/in/dattatraywashivale", label: "LinkedIn", icon: <Linkedin size={17} /> },
-                { href: "mailto:dattatraywashivale23498@gmail.com", label: "Email", icon: <Mail size={17} /> },
-              ].map(({ href, label, icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel={href.startsWith("http") ? "noreferrer" : undefined}
-                  aria-label={label}
-                  className="w-9 h-9 rounded-full glass flex items-center justify-center
-                    text-gray-400 hover:text-violet-400 hover:border-violet-500/50
-                    transition-all duration-300 hover:-translate-y-1"
-                >
-                  {icon}
-                </a>
-              ))}
+            <div>
+              <SocialLinks />
             </div>
           </div>
 
@@ -235,7 +222,7 @@ export default function Hero() {
                 style={{ background: "linear-gradient(160deg, #1e1b38 0%, #0d0b1e 100%)" }}
               >
                 <Image
-                  src="/image.png"
+                  src="/Datta3.png"
                   alt="Dattatray Washivale"
                   fill
                   className="object-cover object-top"

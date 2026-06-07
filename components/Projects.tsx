@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { ExternalLink, ChevronRight, Globe, Shield, BarChart3 } from "lucide-react";
+import { useTheme } from "./ThemeProvider";
 
 const projects = [
   {
@@ -42,6 +43,7 @@ const projects = [
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -132,8 +134,11 @@ export default function Projects() {
                     {project.stack.map((tech) => (
                       <span
                         key={tech}
-                        className="px-2.5 py-1 rounded-md font-mono text-xs
-                          bg-dark-700 text-gray-400 border border-white/5"
+                        className={`px-2.5 py-1 rounded-md font-mono text-xs border
+    ${theme === "dark"
+                            ? "bg-dark-700 text-gray-400 border-white/5"
+                            : "bg-violet-100 text-violet-900 border-violet-200"
+                          }`}
                       >
                         {tech}
                       </span>

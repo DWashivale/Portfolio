@@ -26,13 +26,16 @@ body {
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: #0d0b1e;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #7c3aed;
   border-radius: 3px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #8b5cf6;
 }
@@ -42,30 +45,36 @@ body {
   .glow-violet {
     box-shadow: 0 0 30px rgba(124, 58, 237, 0.3), 0 0 60px rgba(124, 58, 237, 0.1);
   }
+
   .glow-text {
     text-shadow: 0 0 40px rgba(167, 139, 250, 0.6);
   }
+
   .glass {
     background: rgba(20, 18, 41, 0.6);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(139, 92, 246, 0.15);
   }
+
   .glass-hover {
     transition: all 0.3s ease;
   }
+
   .glass-hover:hover {
     background: rgba(30, 27, 56, 0.8);
     border-color: rgba(139, 92, 246, 0.4);
     transform: translateY(-4px);
     box-shadow: 0 20px 40px rgba(124, 58, 237, 0.2);
   }
+
   .gradient-text {
     background: linear-gradient(135deg, #a78bfa 0%, #c084fc 50%, #e879f9 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
   .noise-bg::before {
     content: '';
     position: fixed;
@@ -80,6 +89,7 @@ body {
 .animated-underline {
   position: relative;
 }
+
 .animated-underline::after {
   content: '';
   position: absolute;
@@ -90,6 +100,7 @@ body {
   background: linear-gradient(90deg, #8b5cf6, #c084fc);
   transition: width 0.3s ease;
 }
+
 .animated-underline:hover::after {
   width: 100%;
 }
@@ -99,6 +110,7 @@ body {
   position: relative;
   overflow: hidden;
 }
+
 .skill-bar::after {
   content: '';
   position: absolute;
@@ -106,12 +118,18 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
   animation: shimmer 2s infinite;
 }
+
 @keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(200%); }
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(200%);
+  }
 }
 
 /* Section reveal */
@@ -120,6 +138,7 @@ body {
   transform: translateY(40px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
+
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
@@ -142,9 +161,11 @@ body {
   color: #9ca3af;
   transition: color 0.3s ease;
 }
+
 .nav-link:hover {
   color: #a78bfa;
 }
+
 .nav-link::after {
   content: '';
   position: absolute;
@@ -155,6 +176,7 @@ body {
   background: #8b5cf6;
   transition: width 0.3s ease;
 }
+
 .nav-link:hover::after {
   width: 100%;
 }
@@ -169,8 +191,9 @@ body {
   height: 10px;
   border-radius: 50%;
   background: #8b5cf6;
-  box-shadow: 0 0 10px rgba(139,92,246,0.6);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
 }
+
 .timeline-line {
   position: absolute;
   left: -21px;
@@ -178,4 +201,66 @@ body {
   bottom: 0;
   width: 2px;
   background: linear-gradient(to bottom, #8b5cf6, transparent);
+}
+
+
+/* ── Light Theme ── */
+[data-theme="light"] {
+  background-color: #f5f4ff;
+  color: #1a1730;
+}
+
+[data-theme="light"] body {
+  background-color: #f5f4ff;
+  color: #1a1730;
+}
+
+[data-theme="light"] .glass {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+[data-theme="light"] .glass-hover:hover {
+  background: rgba(240, 237, 255, 0.95);
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 20px 40px rgba(124, 58, 237, 0.12);
+}
+
+[data-theme="light"] section {
+  background-color: #f5f4ff !important;
+}
+
+[data-theme="light"] .bg-dark-900,
+[data-theme="light"] .bg-dark-950 {
+  background-color: #eeeeff !important;
+}
+
+[data-theme="light"] .text-gray-300 {
+  color: #2d2a4a;
+}
+
+[data-theme="light"] .text-gray-400 {
+  color: #4a4570;
+}
+
+[data-theme="light"] .text-gray-500 {
+  color: #6b6690;
+}
+
+[data-theme="light"] .text-gray-600 {
+  color: #7c78a0;
+}
+
+[data-theme="light"] .text-white {
+  color: #0f0d24;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-track {
+  background: #ede9ff;
+}
+
+[data-theme="light"] .site-logo {
+  filter: brightness(0);
 }

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { Briefcase, Calendar, MapPin, ChevronRight } from "lucide-react";
+import { useTheme } from "./ThemeProvider";
 
 const experiences = [
   {
@@ -24,6 +25,7 @@ const experiences = [
 
 export default function Experience() {
   const sectionRef = useRef<HTMLElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -115,8 +117,11 @@ export default function Experience() {
                     {exp.stack.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 rounded-full font-mono text-xs
-                          bg-dark-700 border border-violet-500/15 text-violet-400"
+                        className={`px-3 py-1 rounded-full font-mono text-xs border
+  ${theme === "dark"
+                            ? "bg-dark-700 text-violet-400 border-violet-500/15"
+                            : "bg-violet-100 text-violet-900 border-violet-200"
+                          }`}
                       >
                         {tech}
                       </span>
