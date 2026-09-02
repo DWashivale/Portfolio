@@ -157,6 +157,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useTheme } from "./ThemeProvider";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -213,6 +214,8 @@ const skills = [
 ];
 export default function Skills() {
   const sectionRef = useRef<HTMLElement>(null);
+  const { theme } = useTheme();
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -239,7 +242,11 @@ export default function Skills() {
     <section
       id="skills"
       ref={sectionRef}
-      className="py-14 md:py-24 bg-dark-900 relative overflow-hidden"
+      className={`py-14 md:py-24 relative overflow-hidden ${theme === "dark"
+        ? "bg-dark-900"
+        : "bg-gradient-to-br from-slate-50 via-blue-50 to-violet-50"
+        }`}
+
     >
       {/* Background Orb */}
       <div className="orb w-[500px] h-[500px] bg-purple-900/10 bottom-0 left-0" />

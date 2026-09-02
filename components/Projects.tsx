@@ -66,9 +66,16 @@ export default function Projects() {
     <section
       id="projects"
       ref={sectionRef}
-      className="py-14 md:py-24 bg-dark-900 relative overflow-hidden"
+      className={`py-14 md:py-24 relative overflow-hidden ${theme === "dark"
+        ? "bg-dark-900"
+        : "bg-gradient-to-br from-slate-50 via-violet-50 to-fuchsia-50"
+        }`}
     >
-      <div className="orb w-[500px] h-[500px] bg-purple-800/10 bottom-0 left-0" />
+      <div
+        className={`orb w-[500px] h-[500px] bottom-0 left-0 ${theme === "dark" ? "bg-purple-800/10" : "bg-violet-300/20"
+          }`}
+      />
+
 
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
